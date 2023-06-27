@@ -199,7 +199,7 @@ var (
 		LondonBlock: nil,
 		HertzBlock:  nil,
 
-		Parlia: &ParliaConfig{
+		parlia: &parliaConfig{
 			Period: 3,
 			Epoch:  200,
 		},
@@ -235,7 +235,7 @@ var (
 		LondonBlock: big.NewInt(31103030),
 		HertzBlock:  big.NewInt(31103030),
 
-		Parlia: &ParliaConfig{
+		parlia: &parliaConfig{
 			Period: 3,
 			Epoch:  200,
 		},
@@ -268,13 +268,13 @@ var (
 		BerlinBlock: nil,
 		HertzBlock:  nil,
 
-		Parlia: &ParliaConfig{
+		parlia: &parliaConfig{
 			Period: 3,
 			Epoch:  200,
 		},
 	}
 
-	ParliaTestChainConfig = &ChainConfig{
+	parliaTestChainConfig = &ChainConfig{
 		ChainID:             big.NewInt(2),
 		HomesteadBlock:      big.NewInt(0),
 		EIP150Block:         big.NewInt(0),
@@ -304,7 +304,7 @@ var (
 		LondonBlock: big.NewInt(0),
 		HertzBlock:  big.NewInt(0),
 
-		Parlia: &ParliaConfig{
+		parlia: &parliaConfig{
 			Period: 3,
 			Epoch:  200,
 		},
@@ -429,7 +429,7 @@ type ChainConfig struct {
 	// Various consensus engines
 	Ethash *EthashConfig `json:"ethash,omitempty" toml:",omitempty"`
 	Clique *CliqueConfig `json:"clique,omitempty" toml:",omitempty"`
-	Parlia *ParliaConfig `json:"parlia,omitempty" toml:",omitempty"`
+	parlia *parliaConfig `json:"parlia,omitempty" toml:",omitempty"`
 }
 
 // EthashConfig is the consensus engine configs for proof-of-work based sealing.
@@ -451,14 +451,14 @@ func (c *CliqueConfig) String() string {
 	return "clique"
 }
 
-// ParliaConfig is the consensus engine configs for proof-of-staked-authority based sealing.
-type ParliaConfig struct {
+// parliaConfig is the consensus engine configs for proof-of-staked-authority based sealing.
+type parliaConfig struct {
 	Period uint64 `json:"period"` // Number of seconds between blocks to enforce
 	Epoch  uint64 `json:"epoch"`  // Epoch length to update validatorSet
 }
 
 // String implements the stringer interface, returning the consensus engine details.
-func (b *ParliaConfig) String() string {
+func (b *parliaConfig) String() string {
 	return "parlia"
 }
 
@@ -470,8 +470,8 @@ func (c *ChainConfig) String() string {
 		engine = c.Ethash
 	case c.Clique != nil:
 		engine = c.Clique
-	case c.Parlia != nil:
-		engine = c.Parlia
+	case c.parlia != nil:
+		engine = c.parlia
 	default:
 		engine = "unknown"
 	}

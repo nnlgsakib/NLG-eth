@@ -27,7 +27,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/consensus/clique"
-	"github.com/ethereum/go-ethereum/consensus/parlia"
+	"github.com/ethereum/go-ethereum/consensus/nlgx"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/rlp"
@@ -171,10 +171,10 @@ func (api *SignerAPI) determineSignatureFormat(ctx context.Context, contentType 
 		// Clique uses V on the form 0 or 1
 		useEthereumV = false
 		req = &SignDataRequest{ContentType: mediaType, Rawdata: cliqueRlp, Messages: messages, Hash: sighash}
-	case apitypes.ApplicationParlia.Mime:
+	case apitypes.Applicationparlia.Mime:
 		stringData, ok := data.(string)
 		if !ok {
-			return nil, useEthereumV, fmt.Errorf("input for %v must be an hex-encoded string", apitypes.ApplicationParlia.Mime)
+			return nil, useEthereumV, fmt.Errorf("input for %v must be an hex-encoded string", apitypes.Applicationparlia.Mime)
 		}
 		parliaData, err := hexutil.Decode(stringData)
 		if err != nil {
@@ -198,12 +198,12 @@ func (api *SignerAPI) determineSignatureFormat(ctx context.Context, contentType 
 		}
 		messages := []*apitypes.NameValueType{
 			{
-				Name:  "Parlia header",
+				Name:  "parlia header",
 				Typ:   "parlia",
 				Value: fmt.Sprintf("parlia header %d [0x%x]", header.Number, header.Hash()),
 			},
 		}
-		// Parlia uses V on the form 0 or 1
+		// parlia uses V on the form 0 or 1
 		useEthereumV = false
 		req = &SignDataRequest{ContentType: mediaType, Rawdata: parliaRlp, Messages: messages, Hash: sighash}
 	default: // also case TextPlain.Mime:
@@ -263,7 +263,7 @@ func parliaHeaderHashAndRlp(header *types.Header, chainId *big.Int) (hash, rlp [
 		err = fmt.Errorf("clique header extradata too short, %d < 65", len(header.Extra))
 		return
 	}
-	rlp = parlia.ParliaRLP(header, chainId)
+	rlp = parlia.parliaRLP(header, chainId)
 	hash = parlia.SealHash(header, chainId).Bytes()
 	return hash, rlp, err
 }

@@ -9,7 +9,7 @@ FEATURE
 FEATURE
 * [\#1697](https://github.com/bnb-chain/bsc/pull/1697) upgrade: block height of Hertz(London&Berlin) on testnet
 * [\#1686](https://github.com/bnb-chain/bsc/pull/1686) eip3529tests: refactor tests
-* [\#1676](https://github.com/bnb-chain/bsc/pull/1676) EIP-3529 (BEP-212) Unit tests for Parlia Config
+* [\#1676](https://github.com/bnb-chain/bsc/pull/1676) EIP-3529 (BEP-212) Unit tests for parlia Config
 * [\#1660](https://github.com/bnb-chain/bsc/pull/1660) feat: add a tool for submitting evidence of maliciousvoting
 * [\#1623](https://github.com/bnb-chain/bsc/pull/1623) P2P: try to limit the connection number per IP address
 * [\#1608](https://github.com/bnb-chain/bsc/pull/1608) feature: Enable Berlin EIPs
@@ -164,7 +164,7 @@ IMPROVEMENT
 * [\#1192](https://github.com/bnb-chain/bsc/pull/1192) all: sync with upstream v1.10.22
 * [\#1186](https://github.com/bnb-chain/bsc/pull/1186) worker: improvement of the current block generation logic to get more rewards
 * [\#1184](https://github.com/bnb-chain/bsc/pull/1184) worker: remove pre-seal empty block
-* [\#1182](https://github.com/bnb-chain/bsc/pull/1182) Parlia: Some updates of the miner worker
+* [\#1182](https://github.com/bnb-chain/bsc/pull/1182) parlia: Some updates of the miner worker
 * [\#1181](https://github.com/bnb-chain/bsc/pull/1181) all: sync with upstream v1.10.21
 * [\#1177](https://github.com/bnb-chain/bsc/pull/1177) core/forkid: refactor nextForkHash function
 * [\#1174](https://github.com/bnb-chain/bsc/pull/1174) worker: some code enhancement on work.go
@@ -187,7 +187,7 @@ BUGFIX
 
 * [\#1138](https://github.com/bnb-chain/bsc/pull/1138) fix: upstream patches from go-ethereum 1.10.19
 * [\#1139](https://github.com/bnb-chain/bsc/pull/1139) fix: upstream go-ethereum: fix duplicate fields names in the generted go struct
-* [\#1145](https://github.com/bnb-chain/bsc/pull/1145) consensus: the newChainHead mights not be imported to Parlia.Snapshot
+* [\#1145](https://github.com/bnb-chain/bsc/pull/1145) consensus: the newChainHead mights not be imported to parlia.Snapshot
 * [\#1146](https://github.com/bnb-chain/bsc/pull/1146) fix: upstream patches from go-ethereum 1.10.20
 
 ## v1.1.16
@@ -486,6 +486,6 @@ IMPROVEMENT
 
 BUGFIX
 * [\#4](https://github.com/bnb-chain/bsc/pull/4) fix validator failed to sync a block produced by itself
-* [\#6](https://github.com/bnb-chain/bsc/pull/6) modify params for Parlia consensus with 21 validators 
+* [\#6](https://github.com/bnb-chain/bsc/pull/6) modify params for parlia consensus with 21 validators 
 * [\#10](https://github.com/bnb-chain/bsc/pull/10) add gas limit check in parlia implement
 * [\#13](https://github.com/bnb-chain/bsc/pull/13) fix debug_traceTransaction crashed issue

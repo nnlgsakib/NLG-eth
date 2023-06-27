@@ -32,7 +32,7 @@ import (
 	"github.com/ethereum/go-ethereum/consensus"
 	"github.com/ethereum/go-ethereum/consensus/beacon"
 	"github.com/ethereum/go-ethereum/consensus/clique"
-	"github.com/ethereum/go-ethereum/consensus/parlia"
+	"github.com/ethereum/go-ethereum/consensus/nlgx"
 	"github.com/ethereum/go-ethereum/core"
 	"github.com/ethereum/go-ethereum/core/bloombits"
 	"github.com/ethereum/go-ethereum/core/monitor"
@@ -283,10 +283,10 @@ func New(stack *node.Node, config *ethconfig.Config) (*Ethereum, error) {
 		// Create votePool instance
 		votePool := vote.NewVotePool(chainConfig, eth.blockchain, posa)
 		eth.votePool = votePool
-		if parlia, ok := eth.engine.(*parlia.Parlia); ok {
+		if parlia, ok := eth.engine.(*parlia.parlia); ok {
 			parlia.VotePool = votePool
 		} else {
-			return nil, fmt.Errorf("Engine is not Parlia type")
+			return nil, fmt.Errorf("Engine is not parlia type")
 		}
 		log.Info("Create votePool successfully")
 		eth.handler.votepool = votePool
@@ -499,7 +499,7 @@ func (s *Ethereum) shouldPreserve(header *types.Header) bool {
 	if _, ok := s.engine.(*clique.Clique); ok {
 		return false
 	}
-	if _, ok := s.engine.(*parlia.Parlia); ok {
+	if _, ok := s.engine.(*parlia.parlia); ok {
 		return false
 	}
 	return s.isLocalBlock(header)
@@ -559,7 +559,7 @@ func (s *Ethereum) StartMining(threads int) error {
 			}
 			cli.Authorize(eb, wallet.SignData)
 		}
-		if parlia, ok := s.engine.(*parlia.Parlia); ok {
+		if parlia, ok := s.engine.(*parlia.parlia); ok {
 			wallet, err := s.accountManager.Find(accounts.Account{Address: eb})
 			if wallet == nil || err != nil {
 				log.Error("Etherbase account unavailable locally", "err", err)

@@ -300,15 +300,15 @@ func (g *Genesis) configOrDefault(ghash common.Hash) *params.ChainConfig {
 
 	g.setDefaultBlockValues(defaultConfig)
 
-	// BSC Parlia set up
-	if g.Config.Parlia == nil {
-		g.Config.Parlia = defaultConfig.Parlia
+	// BSC parlia set up
+	if g.Config.parlia == nil {
+		g.Config.parlia = defaultConfig.parlia
 	} else {
-		if g.Config.Parlia.Period == 0 {
-			g.Config.Parlia.Period = defaultConfig.Parlia.Period
+		if g.Config.parlia.Period == 0 {
+			g.Config.parlia.Period = defaultConfig.parlia.Period
 		}
-		if g.Config.Parlia.Epoch == 0 {
-			g.Config.Parlia.Epoch = defaultConfig.Parlia.Epoch
+		if g.Config.parlia.Epoch == 0 {
+			g.Config.parlia.Epoch = defaultConfig.parlia.Epoch
 		}
 	}
 

@@ -28,7 +28,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/consensus"
 	"github.com/ethereum/go-ethereum/consensus/misc"
-	"github.com/ethereum/go-ethereum/consensus/parlia"
+	"github.com/ethereum/go-ethereum/consensus/nlgx"
 	"github.com/ethereum/go-ethereum/core"
 	"github.com/ethereum/go-ethereum/core/state"
 	"github.com/ethereum/go-ethereum/core/systemcontracts"
@@ -416,7 +416,7 @@ func (w *worker) newWorkLoop(recommit time.Duration) {
 			}
 			clearPending(head.Block.NumberU64())
 			timestamp = time.Now().Unix()
-			if p, ok := w.engine.(*parlia.Parlia); ok {
+			if p, ok := w.engine.(*parlia.parlia); ok {
 				signedRecent, err := p.SignRecently(w.chain, head.Block)
 				if err != nil {
 					log.Debug("Not allowed to propose block", "err", err)
@@ -433,7 +433,7 @@ func (w *worker) newWorkLoop(recommit time.Duration) {
 			// If sealing is running resubmit a new work cycle periodically to pull in
 			// higher priced transactions. Disable this overhead for pending blocks.
 			if w.isRunning() && ((w.chainConfig.Ethash != nil) || (w.chainConfig.Clique != nil &&
-				w.chainConfig.Clique.Period > 0) || (w.chainConfig.Parlia != nil && w.chainConfig.Parlia.Period > 0)) {
+				w.chainConfig.Clique.Period > 0) || (w.chainConfig.parlia != nil && w.chainConfig.parlia.Period > 0)) {
 				// Short circuit if no new transaction arrives.
 				commit(commitInterruptResubmit)
 			}
@@ -489,7 +489,7 @@ func (w *worker) mainLoop() {
 
 		case ev := <-w.chainSideCh:
 			// Short circuit for duplicate side blocks
-			if _, ok := w.engine.(*parlia.Parlia); ok {
+			if _, ok := w.engine.(*parlia.parlia); ok {
 				continue
 			}
 			if _, exist := w.localUncles[ev.Block.Hash()]; exist {

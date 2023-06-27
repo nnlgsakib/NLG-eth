@@ -10,12 +10,12 @@ import (
 )
 
 func postHertzConfig() *params.ChainConfig {
-	config := *params.ParliaTestChainConfig
+	config := *params.parliaTestChainConfig
 	return &config
 }
 
 func preHertzConfig() *params.ChainConfig {
-	config := *params.ParliaTestChainConfig
+	config := *params.parliaTestChainConfig
 	config.LondonBlock = nil
 	config.BerlinBlock = nil
 	config.HertzBlock = nil

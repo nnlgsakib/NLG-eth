@@ -26,7 +26,7 @@ import (
 // API is a user facing RPC API to allow query snapshot and validators
 type API struct {
 	chain  consensus.ChainHeaderReader
-	parlia *Parlia
+	parlia *parlia
 }
 
 // GetSnapshot retrieves the state snapshot at a given block.

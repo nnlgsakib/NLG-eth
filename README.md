@@ -30,13 +30,13 @@ Meanwhile, the PoA protocol is most criticized for being not as decentralized as
 
 Other blockchains, such as EOS and Cosmos both, introduce different types of Deputy Proof of Stake (DPoS) to allow the token holders to vote and elect the validator set. It increases the decentralization and favors community governance. 
 
-To combine DPoS and PoA for consensus, NLG Smart Chain implement a novel consensus engine called Parlia that:
+To combine DPoS and PoA for consensus, NLG Smart Chain implement a novel consensus engine called parlia that:
 
 1. Blocks are produced by a limited set of validators.
 2. Validators take turns to produce blocks in a PoA manner, similar to Ethereum's Clique consensus engine.
 3. Validator set are elected in and out based on a staking based governance on NLG Beacon Chain.
 4. The validator set change is relayed via a cross-chain communication mechanism.
-5. Parlia consensus engine will interact with a set of [system contracts](https://docs.NLGchain.org/docs/learn/system-contract) to achieve liveness slash, revenue distributing and validator set renewing func.
+5. parlia consensus engine will interact with a set of [system contracts](https://docs.NLGchain.org/docs/learn/system-contract) to achieve liveness slash, revenue distributing and validator set renewing func.
 
  
 ### Light Client of NLG Beacon Chain

@@ -37,7 +37,7 @@ import (
 
 // Snapshot is the state of the validatorSet at a given point.
 type Snapshot struct {
-	config   *params.ParliaConfig // Consensus engine parameters to fine tune behavior
+	config   *params.parliaConfig // Consensus engine parameters to fine tune behavior
 	ethAPI   *ethapi.PublicBlockChainAPI
 	sigCache *lru.ARCCache // Cache of recent block signatures to speed up ecrecover
 
@@ -58,7 +58,7 @@ type ValidatorInfo struct {
 // method does not initialize the set of recent validators, so only ever use it for
 // the genesis block.
 func newSnapshot(
-	config *params.ParliaConfig,
+	config *params.parliaConfig,
 	sigCache *lru.ARCCache,
 	number uint64,
 	hash common.Hash,
@@ -105,7 +105,7 @@ func (s validatorsAscending) Less(i, j int) bool { return bytes.Compare(s[i][:],
 func (s validatorsAscending) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
 
 // loadSnapshot loads an existing snapshot from the database.
-func loadSnapshot(config *params.ParliaConfig, sigCache *lru.ARCCache, db ethdb.Database, hash common.Hash, ethAPI *ethapi.PublicBlockChainAPI) (*Snapshot, error) {
+func loadSnapshot(config *params.parliaConfig, sigCache *lru.ARCCache, db ethdb.Database, hash common.Hash, ethAPI *ethapi.PublicBlockChainAPI) (*Snapshot, error) {
 	blob, err := db.Get(append([]byte("parlia-"), hash[:]...))
 	if err != nil {
 		return nil, err
@@ -176,7 +176,7 @@ func (s *Snapshot) isMajorityFork(forkHash string) bool {
 	return ally > len(s.RecentForkHashes)/2
 }
 
-func (s *Snapshot) updateAttestation(header *types.Header, chainConfig *params.ChainConfig, parliaConfig *params.ParliaConfig) {
+func (s *Snapshot) updateAttestation(header *types.Header, chainConfig *params.ChainConfig, parliaConfig *params.parliaConfig) {
 	if !chainConfig.IsLuban(header.Number) {
 		return
 	}
@@ -375,7 +375,7 @@ func (s *Snapshot) supposeValidator() common.Address {
 	return validators[index]
 }
 
-func parseValidators(header *types.Header, chainConfig *params.ChainConfig, parliaConfig *params.ParliaConfig) ([]common.Address, []types.BLSPublicKey, error) {
+func parseValidators(header *types.Header, chainConfig *params.ChainConfig, parliaConfig *params.parliaConfig) ([]common.Address, []types.BLSPublicKey, error) {
 	validatorsBytes := getValidatorBytesFromHeader(header, chainConfig, parliaConfig)
 	if len(validatorsBytes) == 0 {
 		return nil, nil, errors.New("invalid validators bytes")

@@ -13,7 +13,7 @@ const (
 	fixedBackOffTimeBeforeFork = 200 * time.Millisecond
 )
 
-func (p *Parlia) delayForRamanujanFork(snap *Snapshot, header *types.Header) time.Duration {
+func (p *parlia) delayForRamanujanFork(snap *Snapshot, header *types.Header) time.Duration {
 	delay := time.Until(time.Unix(int64(header.Time), 0)) // nolint: gosimple
 	if p.chainConfig.IsRamanujan(header.Number) {
 		return delay
@@ -26,7 +26,7 @@ func (p *Parlia) delayForRamanujanFork(snap *Snapshot, header *types.Header) tim
 	return delay
 }
 
-func (p *Parlia) blockTimeForRamanujanFork(snap *Snapshot, header, parent *types.Header) uint64 {
+func (p *parlia) blockTimeForRamanujanFork(snap *Snapshot, header, parent *types.Header) uint64 {
 	blockTime := parent.Time + p.config.Period
 	if p.chainConfig.IsRamanujan(header.Number) {
 		blockTime = blockTime + p.backOffTime(snap, header, p.val)
@@ -34,7 +34,7 @@ func (p *Parlia) blockTimeForRamanujanFork(snap *Snapshot, header, parent *types
 	return blockTime
 }
 
-func (p *Parlia) blockTimeVerifyForRamanujanFork(snap *Snapshot, header, parent *types.Header) error {
+func (p *parlia) blockTimeVerifyForRamanujanFork(snap *Snapshot, header, parent *types.Header) error {
 	if p.chainConfig.IsRamanujan(header.Number) {
 		if header.Time < parent.Time+p.config.Period+p.backOffTime(snap, header, header.Coinbase) {
 			return consensus.ErrFutureBlock
