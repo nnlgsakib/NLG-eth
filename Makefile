@@ -11,7 +11,7 @@ GORUN = env GO111MODULE=on go run
 GIT_COMMIT=$(shell git rev-parse HEAD)
 GIT_COMMIT_DATE=$(shell git log -n1 --pretty='format:%cd' --date=format:'%Y%m%d')
 
-geth:
+nlg:
 	$(GORUN) build/ci.go install ./cmd/nlg
 	@echo "Done building."
 	@echo "Run \"$(GOBIN)/nlg\" to launch nlg."
