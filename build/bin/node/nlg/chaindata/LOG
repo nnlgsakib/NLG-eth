@@ -1,0 +1,42 @@
+=============== Jun 27, 2023 (UTC) ===============
+15:17:24.238652 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:17:24.243545 db@open opening
+15:17:24.251548 version@stat F·[] S·0B[] Sc·[]
+15:17:24.253228 db@janitor F·2 G·0
+15:17:24.253263 db@open done T·9.695599ms
+15:18:29.689340 db@close closing
+15:18:29.689396 db@close done T·49.11µs
+=============== Jun 27, 2023 (UTC) ===============
+15:18:31.622432 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:18:31.622620 version@stat F·[] S·0B[] Sc·[]
+15:18:31.622665 db@open opening
+15:18:31.622733 journal@recovery F·1
+15:18:31.630875 journal@recovery recovering @1
+15:18:31.700570 memdb@flush created L0@2 N·30169 S·2MiB "\x00\x00\xae..\x82\x88\x11,v9390":"\xff\xfc\x94..\xa5\x05\xa1,v9519"
+15:18:31.711206 version@stat F·[1] S·2MiB[2MiB] Sc·[0.25]
+15:18:31.717278 db@janitor F·3 G·0
+15:18:31.717331 db@open done T·94.656262ms
+15:19:20.594949 db@close closing
+15:19:20.595047 db@close done T·87.81µs
+=============== Jun 27, 2023 (UTC) ===============
+15:19:40.860562 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:19:40.860810 version@stat F·[1] S·2MiB[2MiB] Sc·[0.25]
+15:19:40.860866 db@open opening
+15:19:40.860945 journal@recovery F·1
+15:19:40.869811 journal@recovery recovering @3
+15:19:40.872634 memdb@flush created L0@5 N·8 S·793B "Las..ber,v30177":"unc..own,v30174"
+15:19:40.888500 version@stat F·[2] S·2MiB[2MiB] Sc·[0.50]
+15:19:40.895594 db@janitor F·4 G·0
+15:19:40.895629 db@open done T·34.751587ms
+15:26:26.995736 db@close closing
+15:26:26.995795 db@close done T·58.8µs
+=============== Jun 27, 2023 (UTC) ===============
+15:26:33.308989 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:26:33.309138 version@stat F·[2] S·2MiB[2MiB] Sc·[0.50]
+15:26:33.309176 db@open opening
+15:26:33.309226 journal@recovery F·1
+15:26:33.316624 journal@recovery recovering @6
+15:26:33.319586 memdb@flush created L0@8 N·9 S·805B "Las..ber,v30187":"unc..own,v30183"
+15:26:33.327274 version@stat F·[3] S·2MiB[2MiB] Sc·[0.75]
+15:26:33.333344 db@janitor F·5 G·0
+15:26:33.333360 db@open done T·24.177248ms
